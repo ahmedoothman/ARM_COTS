@@ -121,13 +121,10 @@ void RCC_voidInitSysClock(void)
 #elif RCC_PLL_MUL_VAL == RCC_PLL_MUL_13
     RCC_CFGR |= 0x002C0000;
 #elif RCC_PLL_MUL_VAL == RCC_PLL_MUL_14
-
     RCC_CFGR |= 0x00300000;
 #elif RCC_PLL_MUL_VAL == RCC_PLL_MUL_15
-
     RCC_CFGR |= 0x00340000;
 #elif RCC_PLL_MUL_VAL == RCC_PLL_MUL_16
-
     RCC_CFGR |= 0x00380000;
 #endif
     RCC_CR = 0x01000000; /* Enable PLL */
