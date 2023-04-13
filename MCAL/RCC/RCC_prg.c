@@ -89,6 +89,7 @@ void RCC_voidInitSysClock(void)
     RCC_CR = 0x00000081; /* Enable HSI + Trimming = 0 */
     RCC_CFGR = 0x00000000;
 #elif RCC_CLOCK_TYPE == RCC_PLL
+// We must put the config of PLL before enabling it in RCC_CR
 #if RCC_PLL_INPUT == RCC_PLL_IN_HSI_DIV_2
     RCC_CFGR = 0x00000002;
 #elif RCC_PLL_INPUT == RCC_PLL_IN_HSE_DIV_2
