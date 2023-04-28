@@ -76,7 +76,14 @@ void RCC_voidDisableClock(u8 Copy_u8BusId, u8 Copy_u8PerId)
         /* Return Error */
     }
 }
-
+/*************************************************************************/
+/*
+Name       : RCC_voidInitSysClock
+Input      : void
+Output     : void
+Description: This function is used to initialize the system clock
+*/
+/*************************************************************************/
 void RCC_voidInitSysClock(void)
 {
 #if RCC_CLOCK_TYPE == RCC_HSE_CRYSTAL

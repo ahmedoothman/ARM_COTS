@@ -1,12 +1,5 @@
-#ifndef _GPIO_CONFIG_H
+#ifndef _GPIO_CFG_H
 
-#define _GPIO_CONFIG_H
+#define _GPIO_CFG_H
 
-
-
-
-
-
-
-
-#endif 
+#endif
