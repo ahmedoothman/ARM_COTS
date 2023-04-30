@@ -33,6 +33,7 @@
 #define NVIC_IABR1 *((volatile u32 *)(NVIC_BASE_ADDRESS + 0x204)) /* External Interrupts From 32 to 63 */
 #define NVIC_IABR2 *((volatile u32 *)(NVIC_BASE_ADDRESS + 0x208)) /* External Interrupts From 64 to 95 */
 
-#define NVIC_IPR0 *((volatile u8 *)(NVIC_BASE_ADDRESS + 0x300))
+#define NVIC_IPR ((volatile u8 *)(NVIC_BASE_ADDRESS + 0x300))
 
+#define SCB_AIRCR *((volatile u32 *)(0xE000ED00 + 0x0C))
 #endif /* MCAL_NVIC_NVIC_REG_H_ */

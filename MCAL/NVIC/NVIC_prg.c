@@ -152,10 +152,11 @@ Input      : u8 Copy_u8IntNumber, u8 Copy_u8GroupPriority, u8 Copy_u8SubPriority
 Output     : void
 Description: This function is used to set the priority
 */
+/*************************************************************************/
 void NVIC_voidSetPriority(u8 Copy_u8IntNumber, u8 Copy_u8GroupPriority, u8 Copy_u8SubPriority)
 {
-    /*     u8 Local_u8Priority = Copy_u8SubPriority | (Copy_u8GroupPriority << ((NVIC_GROUP_SUB_DISTRIBUTION - 0x05FA0300) / 256));
-        /* Core Peripheral */
+    u8 Local_u8Priority = Copy_u8SubPriority | (Copy_u8GroupPriority << ((NVIC_GROUP_SUB_DISTRIBUTION - 0x05FA0300) / 256));
+    /* Core Peripheral */
     if (Copy_u8IntNumber < 60)
     {
         NVIC_IPR[Copy_u8IntNumber] = Local_u8Priority << 4;
@@ -165,5 +166,7 @@ void NVIC_voidSetPriority(u8 Copy_u8IntNumber, u8 Copy_u8GroupPriority, u8 Copy_
     {
         /* Return Error */
     }
-    * /
+
+    /* Set Priority Distribution */
+    SCB_AIRCR = NVIC_GROUP_SUB_DISTRIBUTION;
 }
