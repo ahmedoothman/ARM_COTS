@@ -53,12 +53,12 @@
 #define INPUT_FLOATING 0b0100
 #define INPUT_PULL_UP_DOWN 0b1000
 
-// void MGPIO_voidSetPortDirection(u8 u8_u8Port, u8 u8_u8Pin, u8 u8_u8value);
-// void MGPIO_voidSetPortValue(u8 u8_u8Port, u8 u8_u8value);
+// void GPIO_voidSetPortDirection(u8 u8_u8Port, u8 u8_u8Pin, u8 u8_u8value);
+// void GPIO_voidSetPortValue(u8 u8_u8Port, u8 u8_u8value);
 
-void MGPIO_voidSetPinDirection(u8 u8_PORT, u8 u8_PIN, u8 u8_MODE);
-void MGPIO_voidSetPinValue(u8 u8_PORT, u8 u8_PIN, u8 u8_VALUE);
-void MGPIO_voidTogglePinValue(u8 u8_u8Port, u8 u8_u8Pin);
-u8 MGPIO_u8GetPinValue(u8 u8_PORT, u8 u8_PIN);
+void GPIO_voidSetPinDirection(u8 u8_PORT, u8 u8_PIN, u8 u8_MODE);
+void GPIO_voidSetPinValue(u8 u8_PORT, u8 u8_PIN, u8 u8_VALUE);
+void GPIO_voidTogglePinValue(u8 u8_u8Port, u8 u8_u8Pin);
+u8 GPIO_u8GetPinValue(u8 u8_PORT, u8 u8_PIN);
 
 #endif
