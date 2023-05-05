@@ -5,8 +5,8 @@
  *      Author: Ahmed Othman
  */
 
-#include "../../LIB/STD_TYPES.h"
-#include "../../LIB/BIT_MATH.h"
+#include "STD_TYPES.h"
+#include "BIT_MATH.h"
 
 #include "RCC_reg.h"
 #include "RCC_int.h"
@@ -14,14 +14,11 @@
 #include "RCC_cfg.h"
 
 /*************************************************************************/
-/*
-Name       : RCC_voidEnableClock
-Input      : u8 Copy_u8BusId, u8 Copy_u8PerId
-Output     : void
-Description: This function is used to enable the peripheral clock
-*/
+/* Name       : RCC_voidEnableClock */
+/* Input      : u8 Copy_u8BusId, u8 Copy_u8PerId */
+/* Output     : void */
+/* Description: This function is used to enable the peripheral clock */
 /*************************************************************************/
-
 void RCC_voidEnableClock(u8 Copy_u8BusId, u8 Copy_u8PerId)
 {
     if (Copy_u8PerId <= 31)
@@ -46,14 +43,11 @@ void RCC_voidEnableClock(u8 Copy_u8BusId, u8 Copy_u8PerId)
 }
 
 /*************************************************************************/
-/*
-Name       : RCC_voidDisableClock
-Input      : u8 Copy_u8BusId, u8 Copy_u8PerId
-Output     : void
-Description: This function is used to disable the peripheral clock
-*/
+/* Name       : RCC_voidDisableClock  */
+/* Input      : u8 Copy_u8BusId, u8 Copy_u8PerId */
+/* Output     : void */
+/* Description : This function is used to disable the peripheral clock */
 /*************************************************************************/
-
 void RCC_voidDisableClock(u8 Copy_u8BusId, u8 Copy_u8PerId)
 {
     if (Copy_u8PerId <= 31)
@@ -76,13 +70,12 @@ void RCC_voidDisableClock(u8 Copy_u8BusId, u8 Copy_u8PerId)
         /* Return Error */
     }
 }
+
 /*************************************************************************/
-/*
-Name       : RCC_voidInitSysClock
-Input      : void
-Output     : void
-Description: This function is used to initialize the system clock
-*/
+/* Name       : RCC_voidInitSysClock */
+/* Input      : void */
+/* Output     : void */
+/* Description: This function is used to initialize the system clock */
 /*************************************************************************/
 void RCC_voidInitSysClock(void)
 {

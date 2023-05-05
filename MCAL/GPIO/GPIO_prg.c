@@ -6,12 +6,10 @@
 #include "GPIO_cfg.h"
 
 /*************************************************************************/
-/*
-Name       : MGPIO_voidSetPortDirection
-Input      : u8 u8_PORT, u8 u8_PIN, u8 u8_MODE
-Output     : void
-Description: This function is used to set the direction of the port
-*/
+/* Name       : MGPIO_voidSetPortDirection
+/* Input      : u8 u8_PORT, u8 u8_PIN, u8 u8_MODE
+/* Output     : void
+/* Description: This function is used to set the direction of the port
 /*************************************************************************/
 /* NOT CORRECT */
 
@@ -41,12 +39,10 @@ Description: This function is used to set the direction of the port
 // }
 
 /*************************************************************************/
-/*
-Name       : MGPIO_voidSetPortValue
-Input      : u8 u8_PORT, u8 u8_VALUE
-Output     : void
-Description: This function is used to set the value of the port
-*/
+/* Name       : MGPIO_voidSetPortValue
+/* Input      : u8 u8_PORT, u8 u8_VALUE
+/* Output     : void
+/* Description: This function is used to set the value of the port
 /*************************************************************************/
 // void MGPIO_voidSetPortValue(u8 u8_PORT, u8 u8_VALUE)
 // {
@@ -64,12 +60,10 @@ Description: This function is used to set the value of the port
 // }
 
 /*************************************************************************/
-/*
-Name       : MGPIO_voidSetPinDirection
-Input      : u8 u8_PORT, u8 u8_PIN, u8 u8_MODE
-Output     : void
-Description: This function is used to set the value of the port
-*/
+/* Name       : MGPIO_voidSetPinDirection
+/* Input      : u8 u8_PORT, u8 u8_PIN, u8 u8_MODE
+/* Output     : void
+/* Description: This function is used to set the value of the port
 /*************************************************************************/
 void MGPIO_voidSetPinDirection(u8 u8_PORT, u8 u8_PIN, u8 u8_MODE)
 {
@@ -125,13 +119,12 @@ void MGPIO_voidSetPinDirection(u8 u8_PORT, u8 u8_PIN, u8 u8_MODE)
     }
   }
 }
+
 /*************************************************************************/
-/*
-Name       : MGPIO_voidSetPinValue
-Input      : u8 u8_PORT, u8 u8_PIN, u8 u8_VALUE
-Output     : void
-Description: This function is used to set the value of the pin
-*/
+/* Name       : MGPIO_voidSetPinValue
+/* Input      : u8 u8_PORT, u8 u8_PIN, u8 u8_VALUE
+/* Output     : void
+/* Description: This function is used to set the value of the pin
 /*************************************************************************/
 void MGPIO_voidSetPinValue(u8 u8_PORT, u8 u8_PIN, u8 u8_VALUE)
 {
@@ -150,12 +143,10 @@ void MGPIO_voidSetPinValue(u8 u8_PORT, u8 u8_PIN, u8 u8_VALUE)
 }
 
 /*************************************************************************/
-/*
-Name       : MGPIO_voidTogglePinValue
-Input      : u8 u8_PORT, u8 u8_PIN
-Output     : void
-Description: This function is used to get the value of the pin
-*/
+/* Name       : MGPIO_voidTogglePinValue
+/* Input      : u8 u8_PORT, u8 u8_PIN
+/* Output     : void
+/* Description: This function is used to get the value of the pin
 /*************************************************************************/
 void MGPIO_voidTogglePinValue(u8 u8_u8Port, u8 u8_u8Pin)
 {
@@ -174,12 +165,10 @@ void MGPIO_voidTogglePinValue(u8 u8_u8Port, u8 u8_u8Pin)
 }
 
 /*************************************************************************/
-/*
-Name       : MGPIO_u8GetPinValue
-Input      : u8 u8_PORT, u8 u8_PIN
-Output     : void
-Description: This function is used to get the value of the pin
-*/
+/* Name       : MGPIO_u8GetPinValue
+/* Input      : u8 u8_PORT, u8 u8_PIN
+/* Output     : void
+/* Description: This function is used to get the value of the pin
 /*************************************************************************/
 u8 MGPIO_u8GetPinValue(u8 u8_PORT, u8 u8_PIN)
 {

@@ -14,12 +14,10 @@
 #include "NVIC_pri.h"
 
 /*************************************************************************/
-/*
-Name       : NVIC_voidEnableInterrupt
-Input      : u8 Copy_u8IntNumber
-Output     : void
-Description: This function is used to enable the interrupt
-*/
+/* Name       : NVIC_voidEnableInterrupt
+/* Input      : u8 Copy_u8IntNumber
+/* Output     : void
+/* Description: This function is used to enable the interrupt
 /*************************************************************************/
 void NVIC_voidEnableInterrupt(u8 Copy_u8IntNumber)
 {
@@ -38,13 +36,12 @@ void NVIC_voidEnableInterrupt(u8 Copy_u8IntNumber)
         /* Return Error */
     }
 }
+
 /*************************************************************************/
-/*
-Name       : NVIC_voidDisableInterrupt
-Input      : u8 Copy_u8IntNumber
-Output     : void
-Description: This function is used to disable the interrupt
-*/
+/* Name       : NVIC_voidDisableInterrupt
+/* Input      : u8 Copy_u8IntNumber
+/* Output     : void
+/* Description: This function is used to disable the interrupt
 /*************************************************************************/
 void NVIC_voidDisableInterrupt(u8 Copy_u8IntNumber)
 {
@@ -65,14 +62,11 @@ void NVIC_voidDisableInterrupt(u8 Copy_u8IntNumber)
 }
 
 /*************************************************************************/
-/*
-Name       : NVIC_voidSetPendingFlag
-Input      : u8 Copy_u8IntNumber
-Output     : void
-Description: This function is used to set the pending flag
-*/
+/* Name       : NVIC_voidSetPendingFlag
+/* Input      : u8 Copy_u8IntNumber
+/* Output     : void
+/* Description: This function is used to set the pending flag
 /*************************************************************************/
-
 void NVIC_voidSetPendingFlag(u8 Copy_u8IntNumber)
 {
 
@@ -93,12 +87,10 @@ void NVIC_voidSetPendingFlag(u8 Copy_u8IntNumber)
 }
 
 /*************************************************************************/
-/*
-Name       : NVIC_voidClearPendingFlag
-Input      : u8 Copy_u8IntNumber
-Output     : void
-Description: This function is used to clear the pending flag
-*/
+/* Name       : NVIC_voidClearPendingFlag
+/* Input      : u8 Copy_u8IntNumber
+/* Output     : void
+/* Description: This function is used to clear the pending flag
 /*************************************************************************/
 void NVIC_voidClearPendingFlag(u8 Copy_u8IntNumber)
 {
@@ -118,13 +110,12 @@ void NVIC_voidClearPendingFlag(u8 Copy_u8IntNumber)
         /* Return Error */
     }
 }
+
 /*************************************************************************/
-/*
-Name       : NVIC_u8GetActiveFlag
-Input      : u8 Copy_u8IntNumber
-Output     : u8 Local_u8Result
-Description: This function is used to get the active flag
-*/
+/* Name       : NVIC_u8GetActiveFlag
+/* Input      : u8 Copy_u8IntNumber
+/* Output     : u8 Local_u8Result
+/* Description: This function is used to get the active flag
 /*************************************************************************/
 u8 NVIC_u8GetActiveFlag(u8 Copy_u8IntNumber)
 {
@@ -145,13 +136,12 @@ u8 NVIC_u8GetActiveFlag(u8 Copy_u8IntNumber)
     }
     return Local_u8Result;
 }
+
 /*************************************************************************/
-/*
-Name       : NVIC_voidSetPriority
-Input      : u8 Copy_u8IntNumber, u8 Copy_u8GroupPriority, u8 Copy_u8SubPriority
-Output     : void
-Description: This function is used to set the priority
-*/
+/* Name       : NVIC_voidSetPriority
+/* Input      : u8 Copy_u8IntNumber, u8 Copy_u8GroupPriority, u8 Copy_u8SubPriority
+/* Output     : void
+/* Description: This function is used to set the priority
 /*************************************************************************/
 void NVIC_voidSetPriority(u8 Copy_u8IntNumber, u8 Copy_u8GroupPriority, u8 Copy_u8SubPriority)
 {

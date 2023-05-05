@@ -13,30 +13,14 @@
 #include "EXTI_pri.h"
 #include "EXTI_reg.h"
 
-static void (*EXTI0_CallBack)(void) = NULL;
-static void (*EXTI1_CallBack)(void) = NULL;
-static void (*EXTI2_CallBack)(void) = NULL;
-static void (*EXTI3_CallBack)(void) = NULL;
-static void (*EXTI4_CallBack)(void) = NULL;
-static void (*EXTI5_CallBack)(void) = NULL;
-static void (*EXTI6_CallBack)(void) = NULL;
-static void (*EXTI7_CallBack)(void) = NULL;
-static void (*EXTI8_CallBack)(void) = NULL;
-static void (*EXTI9_CallBack)(void) = NULL;
-static void (*EXTI10_CallBack)(void) = NULL;
-static void (*EXTI11_CallBack)(void) = NULL;
-static void (*EXTI12_CallBack)(void) = NULL;
-static void (*EXTI13_CallBack)(void) = NULL;
-static void (*EXTI14_CallBack)(void) = NULL;
-static void (*EXTI15_CallBack)(void) = NULL;
+// call back
+static void (*EXTI_CallBack[16])(void);
 
 /*************************************************************************/
-/*
-Name       : EXTI_voidEnableEXTI
-Input      : u8 Copy_u8Line, u8 Copy_u8Mode
-Output     : void
-Description: This function is used to enable the external interrupt and set the mode
-*/
+/* Name       : EXTI_voidEnableEXTI
+/* Input      : u8 Copy_u8Line, u8 Copy_u8Mode
+/* Output     : void
+/* Description: This function is used to enable the external interrupt and set the mode
 /*************************************************************************/
 
 void EXTI_voidEnableEXTI(u8 Copy_u8Line, u8 Copy_u8Mode)
@@ -59,36 +43,30 @@ void EXTI_voidEnableEXTI(u8 Copy_u8Line, u8 Copy_u8Mode)
     }
 }
 /*************************************************************************/
-/*
-Name       : EXTI_voidDisableEXTI
-Input      : u8 Copy_u8Line
-Output     : void
-Description: This function is used to disable the external interrupt
-*/
+/* Name       : EXTI_voidDisableEXTI
+/* Input      : u8 Copy_u8Line
+/* Output     : void
+/* Description: This function is used to disable the external interrupt
 /*************************************************************************/
 void EXTI_voidDisableEXTI(u8 Copy_u8Line)
 {
     CLR_BIT(EXTI->IMR, Copy_u8Line);
 }
 /*************************************************************************/
-/*
-Name       : EXTI_voidSwTrigger
-Input      : u8 Copy_u8Line
-Output     : void
-Description: This function is used to trigger the external interrupt
-*/
+/* Name       : EXTI_voidSwTrigger
+/* Input      : u8 Copy_u8Line
+/* Output     : void
+/* Description: This function is used to trigger the external interrupt
 /*************************************************************************/
 void EXTI_voidSwTrigger(u8 Copy_u8Line)
 {
     SET_BIT(EXTI->SWIER, Copy_u8Line);
 }
 /*************************************************************************/
-/*
-Name       : EXTI_voidSetSignalLatch
-Input      : u8 Copy_u8Line, u8 Copy_u8Mode
-Output     : void
-Description: This function is used to set the mode of the external interrupt
-*/
+/* Name       : EXTI_voidSetSignalLatch
+/* Input      : u8 Copy_u8Line, u8 Copy_u8Mode
+/* Output     : void
+/* Description: This function is used to set the mode of the external interrupt
 /*************************************************************************/
 void EXTI_voidSetSignalLatch(u8 Copy_u8Line, u8 Copy_u8Mode)
 {
@@ -106,65 +84,160 @@ void EXTI_voidSetSignalLatch(u8 Copy_u8Line, u8 Copy_u8Mode)
         break;
     }
 }
+
 /*************************************************************************/
-/*
-Name       : EXTI_voidSetCallBack
-Input      : u8 Copy_u8Line, void (*Copy_ptr)(void)
-Output     : void
-Description: This function is used to set the callback function for the external interrupt
-*/
+/* Name       : EXTI_voidSetCallBack
+/* Input      : void (*ptr)(void)
+/* Output     : void
+/* Description: This function is used to set the call back function
 /*************************************************************************/
-void EXTI_voidSetCallBack(u8 Copy_u8Line, void (*Copy_ptr)(void))
+void EXTI_voidSetCallBack(u8 Copy_u8Line, void (*ptr)(void))
 {
-    switch (Copy_u8Line)
+    EXTI_CallBack[Copy_u8Line] = ptr;
+}
+
+/*************************************************************************/
+/* Name       : EXTI0_IRQHandler
+/* Input      : void
+/* Output     : void
+/* Description: This function is the interrupt handler of EXTI0
+/*************************************************************************/
+void EXTI0_IRQHandler(void)
+{
+    EXTI_CallBack[0]();
+    // clear pending bit
+    SET_BIT(EXTI->PR, 0);
+}
+/*************************************************************************/
+/* Name       : EXTI1_IRQHandler
+/* Input      : void
+/* Output     : void
+/* Description: This function is the interrupt handler of EXTI1
+/*************************************************************************/
+void EXTI1_IRQHandler(void)
+{
+    EXTI_CallBack[1]();
+    // clear pending bit
+    SET_BIT(EXTI->PR, 1);
+}
+/*************************************************************************/
+/* Name       : EXTI2_IRQHandler
+/* Input      : void
+/* Output     : void
+/* Description: This function is the interrupt handler of EXTI2
+/*************************************************************************/
+void EXTI2_IRQHandler(void)
+{
+    EXTI_CallBack[2]();
+    // clear pending bit
+    SET_BIT(EXTI->PR, 2);
+}
+/*************************************************************************/
+/* Name       : EXTI3_IRQHandler
+/* Input      : void
+/* Output     : void
+/* Description: This function is the interrupt handler of EXTI3
+/*************************************************************************/
+void EXTI3_IRQHandler(void)
+{
+    EXTI_CallBack[3]();
+    // clear pending bit
+    SET_BIT(EXTI->PR, 3);
+}
+/*************************************************************************/
+/* Name       : EXTI4_IRQHandler
+/* Input      : void
+/* Output     : void
+/* Description: This function is the interrupt handler of EXTI4
+/*************************************************************************/
+void EXTI4_IRQHandler(void)
+{
+    EXTI_CallBack[4]();
+    // clear pending bit
+    SET_BIT(EXTI->PR, 4);
+}
+/*************************************************************************/
+/* Name       : EXTI9_5_IRQHandler
+/* Input      : void
+/* Output     : void
+/* Description: This function is the interrupt handler of EXTI5:9
+/*************************************************************************/
+void EXTI9_5_IRQHandler(void)
+{
+    if (READ_BIT(EXTI->PR, 5))
     {
-    case EXTI_LINE0:
-        EXTI0_CallBack = Copy_ptr;
-        break;
-    case EXTI_LINE1:
-        EXTI1_CallBack = Copy_ptr;
-        break;
-    case EXTI_LINE2:
-        EXTI2_CallBack = Copy_ptr;
-        break;
-    case EXTI_LINE3:
-        EXTI3_CallBack = Copy_ptr;
-        break;
-    case EXTI_LINE4:
-        EXTI4_CallBack = Copy_ptr;
-        break;
-    case EXTI_LINE5:
-        EXTI5_CallBack = Copy_ptr;
-        break;
-    case EXTI_LINE6:
-        EXTI6_CallBack = Copy_ptr;
-        break;
-    case EXTI_LINE7:
-        EXTI7_CallBack = Copy_ptr;
-        break;
-    case EXTI_LINE8:
-        EXTI8_CallBack = Copy_ptr;
-        break;
-    case EXTI_LINE9:
-        EXTI9_CallBack = Copy_ptr;
-        break;
-    case EXTI_LINE10:
-        EXTI10_CallBack = Copy_ptr;
-        break;
-    case EXTI_LINE11:
-        EXTI11_CallBack = Copy_ptr;
-        break;
-    case EXTI_LINE12:
-        EXTI12_CallBack = Copy_ptr;
-        break;
-    case EXTI_LINE13:
-        EXTI13_CallBack = Copy_ptr;
-        break;
-    case EXTI_LINE14:
-        EXTI14_CallBack = Copy_ptr;
-        break;
-    case EXTI_LINE15:
-        EXTI15_CallBack = Copy_ptr;
-        break;
+        EXTI_CallBack[5]();
+        // clear pending bit
+        SET_BIT(EXTI->PR, 5);
+    }
+    else if (READ_BIT(EXTI->PR, 6))
+    {
+        EXTI_CallBack[6]();
+        // clear pending bit
+        SET_BIT(EXTI->PR, 6);
+    }
+    else if (READ_BIT(EXTI->PR, 7))
+    {
+        EXTI_CallBack[7]();
+        // clear pending bit
+        SET_BIT(EXTI->PR, 7);
+    }
+    else if (READ_BIT(EXTI->PR, 8))
+    {
+        EXTI_CallBack[8]();
+        // clear pending bit
+        SET_BIT(EXTI->PR, 8);
+    }
+    else if (READ_BIT(EXTI->PR, 9))
+    {
+        EXTI_CallBack[9]();
+        // clear pending bit
+        SET_BIT(EXTI->PR, 9);
+    }
+}
+/*************************************************************************/
+/* Name       : EXTI15_10_IRQHandler
+/* Input      : void
+/* Output     : void
+/* Description: This function is the interrupt handler of EXTI10:15
+/*************************************************************************/
+
+void EXTI15_10_IRQHandler(void)
+{
+    if (READ_BIT(EXTI->PR, 10))
+    {
+        EXTI_CallBack[10]();
+        // clear pending bit
+        SET_BIT(EXTI->PR, 10);
+    }
+    else if (READ_BIT(EXTI->PR, 11))
+    {
+        EXTI_CallBack[11]();
+        // clear pending bit
+        SET_BIT(EXTI->PR, 11);
+    }
+    else if (READ_BIT(EXTI->PR, 12))
+    {
+        EXTI_CallBack[12]();
+        // clear pending bit
+        SET_BIT(EXTI->PR, 12);
+    }
+    else if (READ_BIT(EXTI->PR, 13))
+    {
+        EXTI_CallBack[13]();
+        // clear pending bit
+        SET_BIT(EXTI->PR, 13);
+    }
+    else if (READ_BIT(EXTI->PR, 14))
+    {
+        EXTI_CallBack[14]();
+        // clear pending bit
+        SET_BIT(EXTI->PR, 14);
+    }
+    else if (READ_BIT(EXTI->PR, 15))
+    {
+        EXTI_CallBack[15]();
+        // clear pending bit
+        SET_BIT(EXTI->PR, 15);
     }
 }

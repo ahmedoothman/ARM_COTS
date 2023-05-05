@@ -14,12 +14,10 @@
 #include "AFIO_reg.h"
 
 /*************************************************************************/
-/*
-Name       : AFIO_voidSetEXTIConfiguration
-Input      : u8 Copy_u8Line, u8 Copy_u8PortMap
-Output     : void
-Description: This function is used to set the EXTI configuration
-*/
+/* Name       : AFIO_voidSetEXTIConfiguration
+/* Input      : u8 Copy_u8Line, u8 Copy_u8PortMap
+/* Output     : void
+/* Description: This function is used to set the EXTI configuration
 /*************************************************************************/
 void AFIO_voidSetEXTIConfiguration(u8 Copy_u8Line, u8 Copy_u8PortMap)
 {
