@@ -20,4 +20,9 @@ typedef struct
 
 #define STK ((volatile STK_t *)STK_BASE_ADDRESS)
 
+#define ENABLE_PIN 0
+#define TICKINT_PIN 1
+#define CLKSOURCE_PIN 2
+#define COUNTFLAG_PIN 16
+
 #endif /* MCAL_STK_STK_REG_H_ */

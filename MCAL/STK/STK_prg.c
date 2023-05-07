@@ -106,7 +106,7 @@ void STK_voidSetPeriodicInterval(u32 Copy_u32Ticks, void (*Copy_ptr)(void))
     // Enable timer
     SET_BIT(STK->CTRL, ENABLE_PIN);
     // Enable interrupt
-    SET_BIT(STK->CTRL, STK_TICKINT);
+    SET_BIT(STK->CTRL, TICKINT_PIN);
 
     // set mode
     STK_u8ModeOfInterval = STK_PERIODIC_INTERVAL;
@@ -122,7 +122,7 @@ void STK_voidStopTimer(void)
     // Disable timer
     CLR_BIT(STK->CTRL, ENABLE_PIN);
     // Disable interrupt
-    CLR_BIT(STK->CTRL, STK_TICKINT);
+    CLR_BIT(STK->CTRL, TICKINT_PIN);
     // clear value register
     STK->VAL = 0;
     // clear load register
