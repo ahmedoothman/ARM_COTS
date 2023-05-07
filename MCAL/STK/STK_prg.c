@@ -24,36 +24,38 @@ static u8 STK_u8ModeOfInterval;
 void STK_voidInit(void)
 {
     // Disable timer while configuring
-    CLR_BIT(STK->CTRL, STK_ENABLE);
+    CLR_BIT(STK->CTRL, ENABLE_PIN);
 
 // set clock source
 #if STK_CLKSOURCE == STK_CLKSOURCE_AHB_DIV_8
-    CLR_BIT(STK->CTRL, STK_CLKSOURCE);
+    CLR_BIT(STK->CTRL, CLKSOURCE_PIN);
 #elif STK_CLKSOURCE == STK_CLKSOURCE_AHB
-    SET_BIT(STK->CTRL, STK_CLKSOURCE);
+    SET_BIT(STK->CTRL, CLKSOURCE_PIN);
 #else
 #error "Wrong STK_CLKSOURCE configuration"
 #endif
-    // config interrupt
-#if STK_TICKINT == STK_TICKINT_ENABLE
-    SET_BIT(STK->CTRL, STK_TICKINT);
-#elif STK_TICKINT == STK_TICKINT_DISABLE
-    CLR_BIT(STK->CTRL, STK_TICKINT);
-#endif
-    // Enable timer
-    SET_BIT(STK->CTRL, STK_ENABLE);
 }
-// set busy wait
+/*************************************************************************/
+/* NAME:  STK_voidSetBusyWait */
+/* Input: u32 Copy_u32Ticks */
+/* Output: void */
+/* Description: This function set busywait */
+/*************************************************************************/
 void STK_voidSetBusyWait(u32 Copy_u32Ticks)
 {
+    // disable timer while configuring
+    CLR_BIT(STK->CTRL, ENABLE_PIN);
+    // disable interrupt
+    CLR_BIT(STK->CTRL, TICKINT_PIN);
+    // clear value register
+    STK->VAL = 0;
     // load ticks
     STK->LOAD = Copy_u32Ticks;
 
-    // clear value register
-    STK->VAL = 0;
-
+    // Enable timer
+    SET_BIT(STK->CTRL, ENABLE_PIN);
     // wait for flag
-    while (GET_BIT(STK->CTRL, STK_COUNTFLAG) == 0)
+    while (READ_BIT(STK->CTRL, COUNTFLAG_PIN) == 0)
         ;
 }
 /*************************************************************************/
@@ -65,20 +67,20 @@ void STK_voidSetBusyWait(u32 Copy_u32Ticks)
 void STK_voidSetSingleInterval(u32 Copy_u32Ticks, void (*Copy_ptr)(void))
 {
     // Disable timer while configuring
-    CLR_BIT(STK->CTRL, STK_ENABLE);
+    CLR_BIT(STK->CTRL, ENABLE_PIN);
+
+    // clear value register
+    STK->VAL = 0;
 
     // load ticks
     STK->LOAD = Copy_u32Ticks;
 
-    // clear value register
-    STK->VAL = 0;
     // set callback
     STK_CallBack = Copy_ptr;
     // Enable timer
-    SET_BIT(STK->CTRL, STK_ENABLE);
-    // Enable interrupt
-    SET_BIT(STK->CTRL, STK_TICKINT);
-
+    SET_BIT(STK->CTRL, ENABLE_PIN);
+    // enable interrupt
+    SET_BIT(STK->CTRL, TICKINT_PIN);
     // set mode
     STK_u8ModeOfInterval = STK_SINGLE_INTERVAL;
 }
@@ -91,17 +93,18 @@ void STK_voidSetSingleInterval(u32 Copy_u32Ticks, void (*Copy_ptr)(void))
 void STK_voidSetPeriodicInterval(u32 Copy_u32Ticks, void (*Copy_ptr)(void))
 {
     // Disable timer while configuring
-    CLR_BIT(STK->CTRL, STK_ENABLE);
+    CLR_BIT(STK->CTRL, ENABLE_PIN);
+
+    // clear value register
+    STK->VAL = 0;
 
     // load ticks
     STK->LOAD = Copy_u32Ticks;
 
-    // clear value register
-    STK->VAL = 0;
     // set callback
     STK_CallBack = Copy_ptr;
     // Enable timer
-    SET_BIT(STK->CTRL, STK_ENABLE);
+    SET_BIT(STK->CTRL, ENABLE_PIN);
     // Enable interrupt
     SET_BIT(STK->CTRL, STK_TICKINT);
 
@@ -117,11 +120,13 @@ void STK_voidSetPeriodicInterval(u32 Copy_u32Ticks, void (*Copy_ptr)(void))
 void STK_voidStopTimer(void)
 {
     // Disable timer
-    CLR_BIT(STK->CTRL, STK_ENABLE);
+    CLR_BIT(STK->CTRL, ENABLE_PIN);
     // Disable interrupt
     CLR_BIT(STK->CTRL, STK_TICKINT);
     // clear value register
     STK->VAL = 0;
+    // clear load register
+    STK->LOAD = 0;
 }
 /*************************************************************************/
 /* NAME: STK_u32GetElapsedTime */
@@ -178,17 +183,11 @@ u32 STK_u32GetRemainingTime(void)
 /*************************************************************************/
 void SysTick_Handler(void)
 {
+    STK_CallBack();
     if (STK_u8ModeOfInterval == STK_SINGLE_INTERVAL)
     {
-        // Disable timer
-        CLR_BIT(STK->CTRL, STK_ENABLE);
-        // Disable interrupt
-        CLR_BIT(STK->CTRL, STK_TICKINT);
-        // clear value register
-        STK->VAL = 0;
-        // clear load register
-        STK->LOAD = 0;
+        STK_voidStopTimer();
     }
-
-    STK_CallBack();
+    // clear value register
+    // STK->VAL = 0;
 }

@@ -16,11 +16,4 @@ Options:
 */
 #define STK_CLKSOURCE STK_CLKSOURCE_AHB_DIV_8
 
-// tick interrupt
-/*
-Options:
-    STK_TICKINT_ENABLE
-    STK_TICKINT_DISABLE
-*/
-#define STK_TICKINT STK_TICKINT_ENABLE
 #endif /* MCAL_STK_STK_CFG_H_ */
