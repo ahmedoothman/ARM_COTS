@@ -190,4 +190,7 @@ void SysTick_Handler(void)
     }
     // clear value register
     // STK->VAL = 0;
+    // clear flag
+    // CLR_BIT(STK->CTRL, COUNTFLAG_PIN);
+    SET_BIT(STK->CTRL, COUNTFLAG_PIN);
 }
